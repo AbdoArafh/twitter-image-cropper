@@ -10,7 +10,7 @@ import styles from './App.module.scss';
 const cx = classNames.bind(styles);
 
 function App() {
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<string | null>(null);
   const [canvasContext, setCanvasContext] = useState<CanvasRenderingContext2D | null>(null);
   const [loading, setLoading] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);

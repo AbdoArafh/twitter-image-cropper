@@ -12,14 +12,20 @@ import styles from "./ImageDropzone.module.scss";
 
 const cx = classNames.bind(styles);
 
-const ImageDropzone = ({ setValue, preview: _preview, wrapperClass }) => {
-  const [preview, setPreview] = useState(null);
+interface Props {
+  setValue?: React.Dispatch<React.SetStateAction<string | null>>,
+  preview?: string | null,
+  wrapperClass?: string
+}
+
+const ImageDropzone = ({ setValue, preview: _preview = "", wrapperClass }: Props) => {
+  const [preview, setPreview] = useState<string | null>(null);
 
   useEffect(() => {
     setPreview(_preview);
   }, [_preview]);
 
-  function onDrop(acceptedFiles) {
+  function onDrop(acceptedFiles: Array<File>) {
     if (acceptedFiles && acceptedFiles[0]) {
       const img = URL.createObjectURL(acceptedFiles[0]);
       setPreview(img);
@@ -27,8 +33,11 @@ const ImageDropzone = ({ setValue, preview: _preview, wrapperClass }) => {
       const reader = new FileReader();
 
       reader.onloadend = function () {
-        const result = reader.result;
-        if (setValue) setValue(result);
+        const result = reader.result as string;
+
+        if (result) {
+          if (setValue) setValue(result);  
+        };
         // console.log("raw", reader.result);
         // console.log("replaced", result);
       };
