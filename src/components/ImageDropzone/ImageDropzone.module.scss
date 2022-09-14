@@ -1,0 +1,40 @@
+.image-dropzone-root {
+    margin-top: 0.5rem;
+    min-height: 400px;
+
+    position: relative;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--color-gray-light);
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        svg {
+            color: var(--color-primary);
+        }
+    }
+
+    &.active {
+        outline: 2px dashed var(--color-primary);
+    }
+
+    &.active, &:hover {
+        filter: brightness(0.95);
+    }
+
+    .preview-image {
+        height: 400px;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+    }
+}
+  
