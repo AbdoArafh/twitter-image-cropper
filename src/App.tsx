@@ -1,4 +1,4 @@
-import { AnchorHTMLAttributes, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import classNames from "classnames/bind";
 
 // components
